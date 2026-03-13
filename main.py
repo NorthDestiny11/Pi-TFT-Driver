@@ -1,6 +1,8 @@
 import gpiozero
 from time import sleep
 
+# Response times drop drastically if CPU temp. exceeds 70 degrees C.
+
 # Do not assign any power pins. This is handled by the display.
 # Only SCK, MOSI, MISO, CE0, CE1, GPIO 25, GPIO 24 are to be touched.
 
@@ -10,6 +12,8 @@ V3_3_1 = 1
 V3_3_2 = 17
 
 # Both 5V Power supplied are used.
+
+# Max voltage supply is 4.6V, so 5V is unhelpful 
 
 V5_1 = 2
 V5_2 = 4
