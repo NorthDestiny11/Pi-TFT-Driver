@@ -1,5 +1,19 @@
 // This file acts as the main driver/library
 
+//
+//
+// ILI9341 communicates to MCU via SCL, CSX, D/CX and SDI + SDO
+// Due to missing SDI on block diagram, using SDA is likely the best option
+//
+// CSL: GPIO 5
+// SDA: GPIO 3
+// SDI: MOSI: 19
+// SDO: MISO: 21
+
+// CSX: CE0 / CE1: 24 / 26
+// SCLK: 23
+//
+
 #include <iostream> // IO operations
 #include <chrono>   // Time Utilities
 #include <thread>   // For Pausing/Sleeping Purposes
