@@ -26,15 +26,17 @@ sudo apt install libgpiod-dev
 # Enable SPI
 sudo raspi-config nonint do_spi 0
 
+cd ~
+
 # Compile the C++ file
 echo "Compiling C++ Driver..."
-g++ -o Northian-Display-Driver ./main.cpp -lgpiod -static -lpthread
 
-# Copy just-compiled file to /usr/local/bin to be stored safely and permanently
-sudo cp -f ./Northian-Display-Driver /usr/local/bin
 
 # Copy the auto-run .service file to a safe, permanent space to run on boot. 
 sudo cp -f ./Northian-Display-Library.service /etc/systemd/system
+
+# Compile file to /usr/local/bin to be stored safely and permanently
+sudo g++ -o /usr/local/bin/Northian-Display-Driver "$HOME"/Pi-TFT-Driver/main.cpp -lgpiod -lpthread --pedantic
 
 echo "All required interfaces have been enabled. Would you like to reboot now?"
 
@@ -42,7 +44,7 @@ echo "All required interfaces have been enabled. Would you like to reboot now?"
 read -p "Would you like to reboot now? (y/N): " answer
 answer=$(echo "$answer" | tr '[:upper:]' '[:lower:]')
 
-if [[ "$answer" == "y" ]]; then
+if [[ "$answer" == "y" || "$answer" == "yes" ]]; then
     echo "Rebooting..."
     echo "Don't forget to drink water today."
     sleep 3

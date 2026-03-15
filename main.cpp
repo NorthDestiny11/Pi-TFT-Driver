@@ -23,7 +23,11 @@
 #include <chrono>   // Time Utilities
 #include <thread>   // For Pausing/Sleeping Purposes
 
+#include <linux/spi/spidev.h>
 #include <gpiod.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 
 int read_switch(struct gpiod_chip *chip, const char *line_name, unsigned int offset)
 {
