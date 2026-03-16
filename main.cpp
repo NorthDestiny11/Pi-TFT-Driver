@@ -29,35 +29,14 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-int read_switch(struct gpiod_chip *chip, const char *line_name, unsigned int offset)
-{
-  struct gpiod_line *line = gpiod_chip_get_line(chip, offset);
+#define CHIP_NAME "gpiochip0"
 
-  int value = gpiod_line_get_value(line);
-  gpiod_line_release(line);
-  return value;
-}
+#define SWITCH_1 16
+#define SWITCH_2 15
+#define SWITCH_3 13
+#define SWITCH_4 12
 
 int main(int argc, char *argv[])
 {
-  struct gpiod_chip *chip = gpiod_chip_open_by_name("gpiochip0");
-  if (!chip)
-  {
-    std::cout << "Failed to open GPIO chip!" << std::endl;
-    return 1;
-  }
-
-  while (true)
-  {
-    int sw1 = read_switch(chip, "Switch 1", 16);
-    int sw1 = read_switch(chip, "Switch 1", 15);
-    int sw1 = read_switch(chip, "Switch 1", 13);
-    int sw1 = read_switch(chip, "Switch 1", 12);
-  }
-  /*
-  std::cout << "Hello, World!" << std::endl;
-  std::this_thread::sleep_for(std::chrono::milliseconds(500));
-  std::cout << "Slept for 500 ms!" << std::endl;
-*/
   return 0;
 }

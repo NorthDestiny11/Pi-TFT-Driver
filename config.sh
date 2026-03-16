@@ -21,7 +21,7 @@ sudo apt upgrade
 sudo apt install build-essential
 
 # Download libgpiod for proper processing from the GPIO header
-sudo apt install libgpiod-dev
+sudo apt install gpiod libgpiod-dev
 
 # Enable SPI
 sudo raspi-config nonint do_spi 0
